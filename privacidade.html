@@ -38,7 +38,7 @@
     <li>O Lumi é um projeto acadêmico. Ele não tem servidor nem contas próprias: nós, que fazemos o app, não recebemos suas notas, seus lembretes nem sua agenda.</li>
     <li>Seus dados ficam no seu computador.</li>
     <li>Eles só saem de lá em três situações: se você conectar uma conta Google, se usar a busca com IA, e na verificação de novas versões.</li>
-    <li><strong>A busca com IA, se você permitir, envia o conteúdo das suas notas e lembretes ao Google.</strong> Ela pede sua permissão antes do primeiro envio. Suas reuniões e os dados da sua agenda não vão para a IA.</li>
+    <li><strong>A busca com IA, se você permitir, envia o conteúdo das suas reuniões, notas e lembretes ao Google.</strong> Ela pede sua permissão antes do primeiro envio. Leia a seção "Busca com IA" antes de aceitar.</li>
     <li>O app não tem anúncios nem métricas de uso.</li>
   </ul>
 
@@ -66,20 +66,18 @@
   </table>
   </div>
 
-  <p>O uso e a transferência de informações recebidas das APIs do Google seguem a <a href="https://developers.google.com/terms/api-services-user-data-policy">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado. Os dados obtidos pelas APIs do Google Workspace não são usados para desenvolver, melhorar ou treinar modelos de inteligência artificial ou aprendizado de máquina não personalizados.</p>
-
   <h2 id="ia">Busca com IA (Gemini do Google)</h2>
   <p>A busca com IA só envia algo depois que você permite, na primeira vez que for usá-la. Você pode retirar a permissão a qualquer momento nas Configurações do app.</p>
   <p>Com a permissão dada, nada é enviado enquanto você só digita. O envio acontece quando você <strong>aperta Enter na busca</strong> ou <strong>termina um ditado pelo microfone</strong>. Nesse momento, o Lumi envia à API Gemini do Google:</p>
   <ul>
     <li>a sua pergunta;</li>
+    <li>suas reuniões: título, data, nomes ou emails dos participantes e o que você anotou nelas;</li>
     <li>suas notas avulsas: título, data de edição e texto;</li>
-    <li>seus lembretes: título, prazo, frequência dos avisos, situação, tags e o título da nota avulsa em que foram escritos.</li>
+    <li>seus lembretes: título, prazo, frequência dos avisos, situação, tags e o título da nota ou reunião em que foram escritos.</li>
   </ul>
-  <p>O envio vai até cerca de 150 mil caracteres, começando pelo que está mais próximo da data de hoje. No ditado, o áudio gravado também é enviado para virar texto.</p>
-  <p><strong>O que não é enviado:</strong> suas reuniões, as anotações feitas dentro delas e os dados obtidos das APIs do Google (agenda, Gmail e contatos). Se você mesmo escrever nomes, emails ou dados de reuniões numa nota avulsa ou num lembrete, esse texto vai junto.</p>
+  <p>O envio vai até cerca de 150 mil caracteres, começando pelo que está mais próximo da data de hoje. Ele pode incluir dados vindos da sua agenda do Google e dados de outras pessoas, como os participantes das reuniões. No ditado, o áudio gravado também é enviado para virar texto.</p>
   <p>O Lumi usa o plano gratuito da API. Pelos <a href="https://ai.google.dev/gemini-api/terms">termos do Google</a>, nesse plano o Google pode usar o conteúdo enviado para melhorar seus produtos e tecnologias de aprendizado de máquina, e revisores humanos podem ler esse conteúdo depois de desvinculado da conta. Os dados podem ser processados fora do Brasil, e não temos como apagá-los depois de enviados.</p>
-  <p><strong>Não dê a permissão se suas notas tiverem informações sensíveis ou confidenciais.</strong> Sem a permissão, nada é enviado, e a busca continua funcionando no seu computador.</p>
+  <p><strong>Não dê a permissão se suas notas ou reuniões tiverem informações sensíveis ou confidenciais.</strong> Sem a permissão, nada é enviado, e a busca continua funcionando no seu computador.</p>
 
   <h2>Verificação de novas versões</h2>
   <p>A cada algumas horas, o Lumi consulta o GitHub para saber se há uma nova versão. O GitHub recebe seu endereço IP, como em qualquer acesso a um site. No Windows, a nova versão é baixada automaticamente. Nenhuma nota ou dado da agenda é enviado nessa consulta.</p>
