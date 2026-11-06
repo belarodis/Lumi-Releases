@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumi</title>
+<meta name="description" content="Notas, lembretes e avisos de reunião que ficam no canto da tela. Para Windows e Mac, gratuito.">
+<style>
+  :root { --bg: #fbfaf7; --text: #24211c; --muted: #625c52; --line: #e4dfd5; --accent: #7a4d00; --accent-bg: #ffd54f; --accent-text: #24211c; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17161a; --text: #efece6; --muted: #aaa49a; --line: #33313a; --accent: #ffd54f; --accent-bg: #ffd54f; --accent-text: #24211c; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+  main, footer { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+  header.hero { padding: 56px 0 32px; }
+  header.hero svg { width: 72px; height: 72px; display: block; margin-bottom: 16px; }
+  h1 { font-size: 40px; line-height: 1.1; margin: 0 0 12px; }
+  h2 { font-size: 21px; margin: 40px 0 10px; }
+  p { margin: 0 0 14px; }
+  .lead { font-size: 20px; color: var(--muted); }
+  .button { display: inline-block; background: var(--accent-bg); color: var(--accent-text); font-weight: 600; padding: 12px 22px; border-radius: 10px; text-decoration: none; }
+  .note { font-size: 15px; color: var(--muted); margin-top: 10px; }
+  ul, ol { padding-left: 22px; margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; padding-bottom: 40px; font-size: 15px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <svg viewBox="0 0 512 512" aria-hidden="true">
+      <ellipse cx="256" cy="100" rx="150" ry="44" fill="none" stroke="#ffd54f" stroke-width="34"/>
+      <circle cx="256" cy="320" r="146" fill="#fff8e1"/>
+      <g fill="none" stroke="#331920" stroke-width="26" stroke-linecap="round">
+        <path d="M168 300 Q200 336 232 300"/><path d="M280 300 Q312 336 344 300"/><path d="M222 380 Q256 410 290 380"/>
+      </g>
+      <ellipse cx="164" cy="362" rx="30" ry="18" fill="#f0626f" opacity=".6"/>
+      <ellipse cx="348" cy="362" rx="30" ry="18" fill="#f0626f" opacity=".6"/>
+    </svg>
+    <h1>Lumi</h1>
+    <p class="lead">Notas, lembretes e avisos de reunião que ficam no canto da tela, sem interromper o que você está fazendo.</p>
+    <a class="button" href="https://github.com/belarodis/Lumi-releases/releases/latest">Baixar para Windows ou Mac</a>
+    <p class="note">Gratuito. Seus dados ficam no seu computador. Leia a <a href="privacidade.html">Política de Privacidade</a>.</p>
+  </header>
+
+  <h2>O que ele faz</h2>
+  <ul>
+    <li><strong>Bolinha na tela:</strong> um atalho sempre à mão para notas, agenda, lembretes e tags.</li>
+    <li><strong>Avisos de reunião:</strong> o contorno da tela e um card avisam que a reunião está chegando.</li>
+    <li><strong>Notas:</strong> avulsas ou ligadas a uma reunião, com tags e anexos.</li>
+    <li><strong>Lembretes:</strong> com ou sem prazo, em um quadro, com avisos até o prazo.</li>
+    <li><strong>Quadro de tags:</strong> organize notas e lembretes por assunto.</li>
+    <li><strong>Agenda do Google (opcional):</strong> veja seus eventos, responda a convites e crie reuniões.</li>
+    <li><strong>Busca com IA (opcional):</strong> faça perguntas sobre suas notas e reuniões usando o Gemini do Google.</li>
+  </ul>
+
+  <h2>Por que o Lumi pede acesso à sua conta Google</h2>
+  <p>Conectar uma conta Google é opcional. Se você conectar, o Lumi usa o acesso para:</p>
+  <ul>
+    <li><strong>Agenda:</strong> mostrar seus eventos, avisar das reuniões, responder a convites e criar eventos.</li>
+    <li><strong>Gmail:</strong> enviar os emails que você pedir. O Lumi não lê sua caixa de entrada.</li>
+    <li><strong>Contatos:</strong> sugerir nomes e emails enquanto você digita.</li>
+    <li><strong>Email da conta:</strong> mostrar qual conta está conectada.</li>
+  </ul>
+  <p>Enquanto o app não passa pela verificação do Google, a tela de login mostra o aviso de app não verificado. Para continuar, clique em <strong>Avançado</strong> e depois em <strong>Acessar</strong>.</p>
+
+  <h2>Como instalar</h2>
+  <p>Na <a href="https://github.com/belarodis/Lumi-releases/releases/latest">página de download</a>, baixe o arquivo do seu sistema.</p>
+  <p><strong>Windows:</strong> abra o arquivo <code>.exe</code>. Se aparecer "O Windows protegeu o computador", clique em <strong>Mais informações</strong> e depois em <strong>Executar assim mesmo</strong>. O aviso aparece porque o app ainda não tem assinatura digital.</p>
+  <p><strong>Mac:</strong> baixe o <code>.dmg</code> <code>arm64</code> se o seu Mac tem chip M1 ou mais novo, ou o <code>x64</code> se ele é Intel. Abra o arquivo e arraste o Lumi para Aplicativos. Na primeira vez, o Mac bloqueia a abertura: vá em <strong>Ajustes do Sistema → Privacidade e Segurança</strong> e clique em <strong>Abrir Mesmo Assim</strong>.</p>
+</main>
+<footer>
+  <p>Lumi é um projeto acadêmico. <a href="privacidade.html">Política de Privacidade</a> · <a href="https://github.com/belarodis/Lumi-releases/issues">Fale conosco</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidade do Lumi</title>
+<meta name="description" content="O que o Lumi guarda, o que sai do seu computador e como apagar seus dados.">
+<style>
+  :root { --bg: #fbfaf7; --text: #24211c; --muted: #625c52; --line: #e4dfd5; --accent: #7a4d00; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17161a; --text: #efece6; --muted: #aaa49a; --line: #33313a; --accent: #ffd54f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+  main, footer { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+  main { padding-top: 40px; }
+  h1 { font-size: 34px; line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p { margin: 0 0 14px; }
+  .muted { color: var(--muted); font-size: 15px; }
+  ul { padding-left: 22px; margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  code { font-size: 15px; overflow-wrap: anywhere; }
+  .table-scroll { overflow-x: auto; margin-bottom: 14px; }
+  table { border-collapse: collapse; width: 100%; font-size: 16px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; padding-bottom: 40px; font-size: 15px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Política de Privacidade do Lumi</h1>
+  <p class="muted">Última atualização: 6 de novembro de 2026</p>
+
+  <h2>Resumo</h2>
+  <ul>
+    <li>O Lumi é um projeto acadêmico. Ele não tem servidor nem contas próprias: nós, que fazemos o app, não recebemos suas notas, seus lembretes nem sua agenda.</li>
+    <li>Seus dados ficam no seu computador.</li>
+    <li>Eles só saem de lá em três situações: se você conectar uma conta Google, se usar a busca com IA, e na verificação de novas versões.</li>
+    <li><strong>A busca com IA envia o conteúdo das suas notas e reuniões ao Google.</strong> Leia a seção "Busca com IA" antes de usá-la.</li>
+    <li>O app não tem anúncios nem métricas de uso.</li>
+  </ul>
+
+  <h2>O que fica no seu computador</h2>
+  <p>Notas, anexos, lembretes, tags, configurações e a cópia dos eventos da sua agenda. Tudo fica nesta pasta:</p>
+  <ul>
+    <li><strong>Windows:</strong> <code>%APPDATA%\com.belarodis.lumi</code></li>
+    <li><strong>Mac:</strong> <code>~/Library/Application Support/com.belarodis.lumi</code></li>
+  </ul>
+  <p>Os dados de acesso à sua conta Google ficam nessa mesma pasta, criptografados com a proteção do seu sistema operacional. As notas e os demais dados não são criptografados pelo app. Por isso, proteja o acesso ao seu computador.</p>
+
+  <h2>Conta Google (opcional)</h2>
+  <p>Se você conectar uma conta, o seu computador se comunica diretamente com o Google, sem passar por nenhum servidor nosso. O Lumi pede estas permissões:</p>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Permissão</th><th>Para que é usada</th></tr></thead>
+    <tbody>
+      <tr><td>Agenda (ler e editar eventos)</td><td>Mostrar eventos e convites, avisar das reuniões, responder a convites e criar eventos quando você pedir. Uma cópia dos eventos, com título, horário, descrição, local e participantes, fica no seu computador.</td></tr>
+      <tr><td>Gmail (enviar)</td><td>Enviar os emails que você pedir. O Lumi não lê sua caixa de entrada.</td></tr>
+      <tr><td>Contatos (ler contatos e outros contatos)</td><td>Sugerir nomes e emails enquanto você digita. Eles ficam na memória enquanto o app está aberto e não são gravados em disco.</td></tr>
+      <tr><td>Email da conta</td><td>Mostrar qual conta está conectada.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="ia">Busca com IA (Gemini do Google)</h2>
+  <p>Enquanto você só digita na busca, nada é enviado. O envio acontece quando você <strong>aperta Enter na busca</strong> ou <strong>termina um ditado pelo microfone</strong>. Nesse momento, o Lumi envia à API Gemini do Google:</p>
+  <ul>
+    <li>a sua pergunta;</li>
+    <li>suas reuniões: título, data, nomes ou emails dos participantes e o que você anotou nelas;</li>
+    <li>suas notas: título, data de edição e texto;</li>
+    <li>seus lembretes: título, prazo e situação.</li>
+  </ul>
+  <p>O envio vai até cerca de 150 mil caracteres, começando pelo que está mais próximo da data de hoje. Ele pode incluir dados vindos da sua agenda do Google e dados de outras pessoas, como os participantes das reuniões. No ditado, o áudio gravado também é enviado para virar texto.</p>
+  <p>O Lumi usa o plano gratuito da API. Pelos <a href="https://ai.google.dev/gemini-api/terms">termos do Google</a>, nesse plano o Google pode usar o conteúdo enviado para melhorar seus produtos e tecnologias de aprendizado de máquina, e revisores humanos podem ler esse conteúdo depois de desvinculado da conta. Os dados podem ser processados fora do Brasil, e não temos como apagá-los depois de enviados.</p>
+  <p><strong>Não use a busca com IA se suas notas ou reuniões tiverem informações sensíveis ou confidenciais.</strong> Para não enviar nada, não aperte Enter na busca e não use o microfone.</p>
+
+  <h2>Verificação de novas versões</h2>
+  <p>A cada algumas horas, o Lumi consulta o GitHub para saber se há uma nova versão. O GitHub recebe seu endereço IP, como em qualquer acesso a um site. No Windows, a nova versão é baixada automaticamente. Nenhuma nota ou dado da agenda é enviado nessa consulta.</p>
+
+  <h2>Com quem os dados são compartilhados</h2>
+  <p>Só com o Google, nas situações acima, e com o GitHub, na verificação de versões. Não vendemos dados. Os dados enviados a essas empresas seguem também as políticas delas: <a href="https://policies.google.com/privacy">Google</a> e <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p>
+
+  <h2>Como apagar seus dados</h2>
+  <ul>
+    <li><strong>Desconectar o Google:</strong> faça isso nas Configurações do app. Para revogar o acesso, use a página de <a href="https://myaccount.google.com/permissions">permissões da sua conta Google</a>.</li>
+    <li><strong>Apagar os dados do app:</strong> desinstale o Lumi e apague a pasta indicada acima. Desinstalar não apaga essa pasta sozinho.</li>
+    <li><strong>O que já está no Google:</strong> sua agenda e seus emails continuam na sua conta e seguem as regras do Google.</li>
+  </ul>
+
+  <h2>Seus direitos</h2>
+  <p>A Lei Geral de Proteção de Dados (LGPD) garante direitos como acesso, correção e eliminação de dados. Como não guardamos seus dados, você mesmo pode acessá-los, corrigi-los e apagá-los no app. Para o que foi enviado ao Google, use os canais do próprio Google.</p>
+
+  <h2>Mudanças nesta política</h2>
+  <p>Publicaremos qualquer alteração nesta página, com a nova data no topo. Se mudarmos a forma de usar os dados da sua conta Google, avisaremos no app e pediremos seu consentimento antes.</p>
+
+  <h2>Contato</h2>
+  <p>Fale conosco abrindo uma <a href="https://github.com/belarodis/Lumi-releases/issues">issue no GitHub</a>. As issues são públicas, então não escreva dados pessoais nelas.</p>
+</main>
+<footer>
+  <p><a href="index.html">Voltar para a página do Lumi</a></p>
+</footer>
+</body>
+</html>
