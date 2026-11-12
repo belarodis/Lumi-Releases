@@ -3,76 +3,696 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumi</title>
-<meta name="description" content="Notas, lembretes e avisos de reunião que ficam no canto da tela. Para Windows e Mac, gratuito.">
-<style>
-  :root { --bg: #fbfaf7; --text: #24211c; --muted: #625c52; --line: #e4dfd5; --accent: #7a4d00; --accent-bg: #ffd54f; --accent-text: #24211c; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #17161a; --text: #efece6; --muted: #aaa49a; --line: #33313a; --accent: #ffd54f; --accent-bg: #ffd54f; --accent-text: #24211c; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
-  main, footer { max-width: 680px; margin: 0 auto; padding: 0 20px; }
-  header.hero { padding: 56px 0 32px; }
-  header.hero svg { width: 72px; height: 72px; display: block; margin-bottom: 16px; }
-  h1 { font-size: 40px; line-height: 1.1; margin: 0 0 12px; }
-  h2 { font-size: 21px; margin: 40px 0 10px; }
-  p { margin: 0 0 14px; }
-  .lead { font-size: 20px; color: var(--muted); }
-  .button { display: inline-block; background: var(--accent-bg); color: var(--accent-text); font-weight: 600; padding: 12px 22px; border-radius: 10px; text-decoration: none; }
-  .note { font-size: 15px; color: var(--muted); margin-top: 10px; }
-  ul, ol { padding-left: 22px; margin: 0 0 14px; }
-  li { margin-bottom: 6px; }
-  a { color: var(--accent); }
-  footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 18px; padding-bottom: 40px; font-size: 15px; color: var(--muted); }
-</style>
+<title>Lumi · notas e avisos de reunião no canto da tela</title>
+<meta name="description" content="Notas, lembretes e avisos de reunião que ficam no canto da tela, sem interromper o que você está fazendo. Para Windows e Mac, gratuito.">
+<meta name="theme-color" content="#f4fbfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#051316" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Lumi · notas e avisos de reunião no canto da tela">
+<meta property="og:description" content="Uma bolinha na borda da tela para suas notas, lembretes e agenda. Grátis para Windows e Mac.">
+<meta property="og:url" content="https://belarodis.github.io/Lumi-Releases/">
+<meta property="og:image" content="https://belarodis.github.io/Lumi-Releases/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/lumi-bubble.webp" as="image">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<main>
-  <header class="hero">
-    <svg viewBox="0 0 512 512" aria-hidden="true">
-      <ellipse cx="256" cy="100" rx="150" ry="44" fill="none" stroke="#ffd54f" stroke-width="34"/>
-      <circle cx="256" cy="320" r="146" fill="#fff8e1"/>
-      <g fill="none" stroke="#331920" stroke-width="26" stroke-linecap="round">
-        <path d="M168 300 Q200 336 232 300"/><path d="M280 300 Q312 336 344 300"/><path d="M222 380 Q256 410 290 380"/>
-      </g>
-      <ellipse cx="164" cy="362" rx="30" ry="18" fill="#f0626f" opacity=".6"/>
-      <ellipse cx="348" cy="362" rx="30" ry="18" fill="#f0626f" opacity=".6"/>
-    </svg>
-    <h1>Lumi</h1>
-    <p class="lead">Notas, lembretes e avisos de reunião que ficam no canto da tela, sem interromper o que você está fazendo.</p>
-    <a class="button" href="https://github.com/belarodis/Lumi-Releases/releases/latest">Baixar para Windows ou Mac</a>
-    <p class="note">Gratuito. Seus dados ficam no seu computador. Leia a <a href="privacidade.html">Política de Privacidade</a>.</p>
-  </header>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-  <h2>O que ele faz</h2>
-  <ul>
-    <li><strong>Bolinha na tela:</strong> um atalho sempre à mão para notas, agenda, lembretes e tags.</li>
-    <li><strong>Avisos de reunião:</strong> o contorno da tela e um card avisam que a reunião está chegando.</li>
-    <li><strong>Notas:</strong> avulsas ou ligadas a uma reunião, com tags e anexos.</li>
-    <li><strong>Lembretes:</strong> com ou sem prazo, em um quadro, com avisos até o prazo.</li>
-    <li><strong>Quadro de tags:</strong> organize notas e lembretes por assunto.</li>
-    <li><strong>Agenda do Google (opcional):</strong> veja seus eventos, responda a convites e crie reuniões.</li>
-    <li><strong>Busca com IA (opcional):</strong> faça perguntas sobre suas notas, reuniões e lembretes usando o Gemini do Google, se você permitir.</li>
-  </ul>
+<!-- Ícones usados na página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 19.5h14"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 0 0 5.6 6.6L4 8"/><path d="M4 4v4h4"/><path d="M4 12.5a8 8 0 0 0 14.4 4.9L20 16"/><path d="M20 20v-4h-4"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h11.377v11.372H0Zm12.623 0H24v11.372H12.623ZM0 12.623h11.377V24H0Zm12.623 0H24V24H12.623"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+    <symbol id="i-bubble" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 9.5a4.5 4.5 0 0 1 3.5-2.4"/></symbol>
+    <symbol id="i-border" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="14" rx="2.5"/><rect x="5.5" y="7" width="13" height="8" rx="1" stroke-dasharray="2 2.2"/><path d="M8.5 21h7"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5"/><path d="M9 13h7M9 16.5h5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.5 1.5 0 0 1 0 2.1l-7 7a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.3" cy="8.3" r="1.4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z"/><path d="M19 15.5c.25 1.7.8 2.25 2.5 2.5-1.7.25-2.25.8-2.5 2.5-.25-1.7-.8-2.25-2.5-2.5 1.7-.25 2.25-.8 2.5-2.5z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.2 7.5 9.5 4.3-1.3 7.5-5 7.5-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".6" fill="currentColor"/></symbol>
+  </defs>
+</svg>
 
-  <h2>Por que o Lumi pede acesso à sua conta Google</h2>
-  <p>Conectar uma conta Google é opcional. Se você conectar, o Lumi usa o acesso para:</p>
-  <ul>
-    <li><strong>Agenda:</strong> mostrar seus eventos, avisar das reuniões, responder a convites e criar eventos.</li>
-    <li><strong>Gmail:</strong> enviar os emails que você pedir. O Lumi não lê sua caixa de entrada.</li>
-    <li><strong>Contatos:</strong> sugerir nomes e emails enquanto você digita.</li>
-    <li><strong>Email da conta:</strong> mostrar qual conta está conectada.</li>
-  </ul>
-  <p>Enquanto o app não passa pela verificação do Google, a tela de login mostra o aviso de app não verificado. Para continuar, clique em <strong>Avançado</strong> e depois em <strong>Acessar</strong>.</p>
+<header class="topbar" id="topo">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Lumi, início">
+      <img src="assets/favicon-64.png" alt="" width="32" height="32">
+      Lumi
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#instalar">Instalar</a>
+      <a href="#atualizar">Atualizar</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn--primary btn--sm" href="#baixar">
+      <svg aria-hidden="true"><use href="#i-download"/></svg>
+      Baixar
+    </a>
+  </div>
+</header>
 
-  <h2>Como instalar</h2>
-  <p>Na <a href="https://github.com/belarodis/Lumi-Releases/releases/latest">página de download</a>, baixe o arquivo do seu sistema.</p>
-  <p><strong>Windows:</strong> abra o arquivo <code>.exe</code>. Se aparecer "O Windows protegeu o computador", clique em <strong>Mais informações</strong> e depois em <strong>Executar assim mesmo</strong>. O aviso aparece porque o app ainda não tem assinatura digital.</p>
-  <p><strong>Mac:</strong> baixe o <code>.dmg</code> <code>arm64</code> se o seu Mac tem chip M1 ou mais novo, ou o <code>x64</code> se ele é Intel. Abra o arquivo e arraste o Lumi para Aplicativos. Na primeira vez, o Mac bloqueia a abertura: vá em <strong>Ajustes do Sistema → Privacidade e Segurança</strong> e clique em <strong>Abrir Mesmo Assim</strong>.</p>
+<main id="conteudo">
+
+  <!-- Início -->
+  <div class="hero">
+    <span class="drift drift--a" aria-hidden="true"><img src="assets/lumi-bubble.webp" alt=""></span>
+    <span class="drift drift--b" aria-hidden="true"><img src="assets/lumi-bubble.webp" alt=""></span>
+    <span class="drift drift--c" aria-hidden="true"><img src="assets/lumi-bubble.webp" alt=""></span>
+    <span class="drift drift--d" aria-hidden="true"><img src="assets/lumi-bubble.webp" alt=""></span>
+
+    <div class="wrap">
+      <div class="hero__bubble">
+        <img src="assets/lumi-bubble.webp" alt="A bolinha do Lumi" width="232" height="232">
+      </div>
+
+      <span class="pill"><span class="pill__dot" aria-hidden="true"></span><span data-hero-pill>Grátis · Windows e Mac</span></span>
+
+      <h1>Notas e reuniões num <span class="shine">cantinho da tela</span></h1>
+      <p class="lead">O Lumi é uma bolinha que fica na borda da tela. Um clique abre suas notas, lembretes e agenda. Quando uma reunião se aproxima, a borda da tela acende e avisa, sem janela no meio do seu trabalho.</p>
+
+      <div class="cta">
+        <a class="btn btn--primary btn--lg" href="#baixar" data-dl="auto" data-kind="download">
+          <svg aria-hidden="true"><use href="#i-download"/></svg>
+          <span class="btn__text">
+            <span data-dl-label>Baixar o Lumi</span>
+            <span class="btn__meta" data-dl-meta>Windows e Mac · grátis</span>
+          </span>
+        </a>
+        <a class="btn btn--lg" href="#atualizar">
+          <svg aria-hidden="true"><use href="#i-refresh"/></svg>
+          <span class="btn__text">
+            <span>Atualizar o Lumi</span>
+            <span class="btn__meta">para quem já tem o app</span>
+          </span>
+        </a>
+      </div>
+      <p class="hero__fine">Seus dados ficam no seu computador. <a href="#baixar">Outras versões</a> · <a href="privacidade.html">Privacidade</a></p>
+    </div>
+  </div>
+
+  <!-- Como funciona -->
+  <section id="como-funciona">
+    <div class="wrap how">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Como funciona</span>
+          <h2>Fica à mão, sem ficar no caminho</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>A bolinha mora na borda da tela</h3>
+            <p>Arraste para o lado que preferir. Passe o mouse e ela abre o menu: calendário, lembretes, tags e configurações.</p>
+          </li>
+          <li>
+            <h3>A tela avisa da reunião</h3>
+            <p>Minutos antes, a borda da tela acende e um cartão discreto mostra o que vem aí. Você vê com o canto do olho e continua o que estava fazendo.</p>
+          </li>
+          <li>
+            <h3>Anote sem trocar de janela</h3>
+            <p>Um clique na bolinha abre suas notas: a da reunião ou uma avulsa. Tudo fica salvo no seu computador.</p>
+          </li>
+        </ol>
+      </div>
+
+      <figure style="margin:0">
+        <div class="screen" role="img" aria-label="Exemplo: a borda da tela acesa, um cartão avisando da reunião e a bolinha do Lumi com o menu aberto na borda direita">
+          <div class="mock-win mock-win--a" aria-hidden="true">
+            <div class="bar bar--title"></div>
+            <div class="bar bar--w90"></div>
+            <div class="bar bar--w80"></div>
+            <div class="bar bar--w70"></div>
+            <div class="bar bar--w90"></div>
+            <div class="bar bar--w60"></div>
+            <div class="bar bar--w80"></div>
+            <div class="bar bar--w40"></div>
+          </div>
+          <div class="mock-win mock-win--b" aria-hidden="true">
+            <div class="bar bar--title"></div>
+            <div class="bar bar--w80"></div>
+            <div class="bar bar--w60"></div>
+            <div class="bar bar--w70"></div>
+          </div>
+          <div class="glow" aria-hidden="true"></div>
+          <div class="mock-card" aria-hidden="true">
+            <div class="mock-card__time">Em 5 min · 10:00</div>
+            <div class="mock-card__title">Reunião do projeto</div>
+            <div class="mock-card__sub">Google Meet · 4 participantes</div>
+          </div>
+          <div class="mock-bubble" aria-hidden="true">
+            <img src="assets/lumi-bubble.webp" alt="">
+            <div class="mock-menu">
+              <svg><use href="#i-calendar"/></svg>
+              <svg><use href="#i-bell"/></svg>
+              <svg><use href="#i-tag"/></svg>
+              <svg><use href="#i-gear"/></svg>
+            </div>
+          </div>
+        </div>
+        <figcaption class="mock-caption">A borda acende antes da reunião. A bolinha fica na borda, com o menu a um passo do mouse.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section id="recursos">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Recursos</span>
+        <h2>Tudo o que você precisa, num lugar só</h2>
+        <p>Sem conta, sem cadastro. Abra e use.</p>
+      </div>
+
+      <div class="bento">
+        <article class="feature feature--wide feature--glow glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-border"/></svg></div>
+          <h3>Avisos de reunião</h3>
+          <p>O contorno da tela acende quando a reunião se aproxima e muda de cor conforme o horário chega. Um cartão mostra o título e quanto falta. Nada de pop-up roubando o foco.</p>
+        </article>
+        <article class="feature glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-bubble"/></svg></div>
+          <h3>Bolinha na tela</h3>
+          <p>Um atalho sempre à mão para notas, agenda, lembretes e tags. Você escolhe o desenho dela.</p>
+        </article>
+        <article class="feature glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-note"/></svg></div>
+          <h3>Notas</h3>
+          <p>Avulsas ou ligadas a uma reunião, com tags e anexos.</p>
+        </article>
+        <article class="feature glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-bell"/></svg></div>
+          <h3>Lembretes</h3>
+          <p>Com ou sem prazo, num quadro. O Lumi lembra você até o prazo chegar.</p>
+        </article>
+        <article class="feature glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-tag"/></svg></div>
+          <h3>Quadro de tags</h3>
+          <p>Organize notas e lembretes por assunto e veja tudo de um tema junto.</p>
+        </article>
+        <article class="feature glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-calendar"/></svg></div>
+          <h3>Agenda do Google <span class="tag-opt">opcional</span></h3>
+          <p>Veja seus eventos, responda a convites e crie reuniões.</p>
+        </article>
+        <article class="feature feature--wide glass">
+          <div class="feature__icon"><svg aria-hidden="true"><use href="#i-sparkle"/></svg></div>
+          <h3>Busca com IA <span class="tag-opt">opcional</span></h3>
+          <p>Pergunte em português sobre suas notas, reuniões e lembretes, digitando ou falando. Usa o Gemini do Google e só envia algo depois que você permite. <a href="privacidade.html#ia">O que é enviado</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Baixar -->
+  <section id="baixar" class="download">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Baixar</span>
+        <h2>Escolha o seu computador</h2>
+        <p>Já marcamos o que parece ser o seu. É grátis e não precisa de cadastro.</p>
+      </div>
+
+      <div class="platforms">
+        <article class="platform glass" data-platform="win">
+          <span class="platform__badge">Para este computador</span>
+          <div class="platform__os">
+            <svg aria-hidden="true"><use href="#i-windows"/></svg>
+            <h3>Windows</h3>
+          </div>
+          <p class="platform__detail">Windows 10 ou 11, 64 bits. Depois de instalado, ele se atualiza sozinho.</p>
+          <a class="btn btn--primary" href="https://github.com/belarodis/Lumi-Releases/releases/latest" data-dl="win">
+            <svg aria-hidden="true"><use href="#i-download"/></svg>
+            Baixar o instalador
+          </a>
+          <span class="platform__meta" data-size="win"></span>
+        </article>
+
+        <article class="platform glass" data-platform="mac-arm">
+          <span class="platform__badge">Para este computador</span>
+          <div class="platform__os">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg>
+            <h3>Mac com chip Apple</h3>
+          </div>
+          <p class="platform__detail">Macs com chip M1, M2, M3, M4 ou mais novo. São quase todos os Macs de 2021 para cá.</p>
+          <a class="btn btn--primary" href="https://github.com/belarodis/Lumi-Releases/releases/latest" data-dl="mac-arm">
+            <svg aria-hidden="true"><use href="#i-download"/></svg>
+            Baixar para chip Apple
+          </a>
+          <span class="platform__meta" data-size="mac-arm"></span>
+        </article>
+
+        <article class="platform glass" data-platform="mac-x64">
+          <span class="platform__badge">Para este computador</span>
+          <div class="platform__os">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg>
+            <h3>Mac com Intel</h3>
+          </div>
+          <p class="platform__detail">Macs com processador Intel, em geral de 2020 ou de antes.</p>
+          <a class="btn btn--primary" href="https://github.com/belarodis/Lumi-Releases/releases/latest" data-dl="mac-x64">
+            <svg aria-hidden="true"><use href="#i-download"/></svg>
+            Baixar para Intel
+          </a>
+          <span class="platform__meta" data-size="mac-x64"></span>
+        </article>
+      </div>
+
+      <details class="which-mac" id="qual-mac">
+        <summary>Não sei qual Mac eu tenho</summary>
+        <div class="details-body">
+          <p>Clique no menu da maçã, no canto de cima da tela, e escolha <span class="ui">Sobre Este Mac</span>.</p>
+          <ul>
+            <li>Se aparecer <span class="ui">Chip</span> (Apple M1, M2, M3…), baixe a versão <strong>chip Apple</strong>.</li>
+            <li>Se aparecer <span class="ui">Processador</span> com a palavra Intel, baixe a versão <strong>Intel</strong>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <p class="release-line">
+        <span data-release-info hidden>Versão <strong data-version></strong>, publicada em <span data-date></span></span>
+        <a href="https://github.com/belarodis/Lumi-Releases/releases">Todas as versões no GitHub</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Instalar -->
+  <section id="instalar">
+    <div class="wrap install">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Instalar</span>
+        <h2>Pronto em um minuto</h2>
+        <p>O sistema mostra um aviso na primeira vez, porque o Lumi ainda não tem assinatura digital, que é paga. Veja como passar por ele.</p>
+      </div>
+
+      <div class="tabs-row">
+        <div class="tabs" role="tablist" aria-label="Sistema">
+          <button class="tab" type="button" role="tab" id="tab-win" aria-controls="panel-win" aria-selected="true">
+            <svg aria-hidden="true"><use href="#i-windows"/></svg> Windows
+          </button>
+          <button class="tab" type="button" role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="false" tabindex="-1">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg> Mac
+          </button>
+        </div>
+      </div>
+
+      <div class="panel glass" role="tabpanel" id="panel-win" aria-labelledby="tab-win">
+        <ol class="timeline">
+          <li>
+            <h3>Abra o instalador</h3>
+            <p>Abra o arquivo <code>Lumi-Setup.exe</code> que você baixou. Se o navegador disser que o arquivo não é baixado com frequência, escolha <span class="ui">Manter</span>.</p>
+          </li>
+          <li>
+            <h3>Passe pelo aviso do Windows</h3>
+            <p>Se aparecer <span class="ui">"O Windows protegeu o computador"</span>, clique em <span class="ui">Mais informações</span> e depois em <span class="ui">Executar assim mesmo</span>.</p>
+          </li>
+          <li>
+            <h3>Pronto</h3>
+            <p>O Lumi abre sozinho e a bolinha aparece na borda da tela. Ele também fica no ícone da bandeja, perto do relógio.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="panel glass" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" hidden>
+        <ol class="timeline">
+          <li>
+            <h3>Arraste para Aplicativos</h3>
+            <p>Abra o arquivo <code>.dmg</code> que você baixou e arraste o Lumi para a pasta <span class="ui">Aplicativos</span>.</p>
+          </li>
+          <li>
+            <h3>Libere a primeira abertura</h3>
+            <p>Abra o Lumi. Na primeira vez, o Mac bloqueia a abertura. Vá em <span class="ui">Ajustes do Sistema → Privacidade e Segurança</span>, role até o fim e clique em <span class="ui">Abrir Mesmo Assim</span>.</p>
+          </li>
+          <li>
+            <h3>Pronto</h3>
+            <p>A bolinha aparece na borda da tela. O Lumi não fica no Dock: ele mora no ícone redondo da barra de menus, no topo da tela.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout calendar-tip">
+        <svg aria-hidden="true"><use href="#i-calendar"/></svg>
+        <span><strong>Quer ver sua agenda?</strong> Conecte uma conta Google nas Configurações do Lumi. Como o app ainda não passou pela verificação do Google, a tela de login mostra um aviso de app não verificado: clique em <span class="ui">Avançado</span> e depois em <span class="ui">Acessar</span>.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atualizar -->
+  <section id="atualizar">
+    <div class="wrap">
+      <div class="update">
+        <div class="update__inner">
+          <div class="update__intro">
+            <span class="eyebrow">Já tem o Lumi?</span>
+            <h2>Atualize para a versão mais nova</h2>
+            <p>Cada versão traz correções e novidades. Baixe a mais recente e instale por cima da que você tem.</p>
+            <div class="update__version" data-release-info hidden>
+              Versão mais recente <strong data-version></strong>
+            </div>
+            <div class="cta" style="justify-content:flex-start">
+              <a class="btn btn--primary btn--lg" href="https://github.com/belarodis/Lumi-Releases/releases/latest" data-dl="auto" data-kind="update">
+                <svg aria-hidden="true"><use href="#i-refresh"/></svg>
+                <span class="btn__text">
+                  <span data-dl-label>Baixar a versão mais recente</span>
+                  <span class="btn__meta" data-dl-meta>Windows e Mac</span>
+                </span>
+              </a>
+            </div>
+            <div class="update__keep">
+              <svg aria-hidden="true"><use href="#i-shield"/></svg>
+              <span>Suas notas, lembretes e configurações continuam onde estavam. Eles ficam numa pasta separada, e atualizar não mexe nela.</span>
+            </div>
+          </div>
+
+          <div class="update__how">
+            <div class="how-card" data-os="win">
+              <div class="how-card__head">
+                <svg aria-hidden="true"><use href="#i-windows"/></svg>
+                <h3>No Windows, ele se atualiza sozinho</h3>
+              </div>
+              <p>O Lumi baixa a versão nova em segundo plano e avisa quando ela estiver pronta. É só clicar no aviso para reiniciar e atualizar.</p>
+              <p>Para atualizar na hora, feche o Lumi (ícone da bandeja → <span class="ui">Quit Lumi</span>), baixe o instalador e abra.</p>
+            </div>
+            <div class="how-card" data-os="mac">
+              <div class="how-card__head">
+                <svg aria-hidden="true"><use href="#i-apple"/></svg>
+                <h3>No Mac, em três passos</h3>
+              </div>
+              <ol>
+                <li>Feche o Lumi: ícone redondo da barra de menus → <span class="ui">Quit Lumi</span>.</li>
+                <li>Baixe a versão nova e abra o <code>.dmg</code>.</li>
+                <li>Arraste o Lumi para <span class="ui">Aplicativos</span> e escolha <span class="ui">Substituir</span>.</li>
+              </ol>
+            </div>
+            <p class="callout" style="margin:0">
+              <svg aria-hidden="true"><use href="#i-info"/></svg>
+              <span>O Lumi procura versões novas sozinho e avisa você quando sai uma.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dúvidas -->
+  <section id="duvidas">
+    <div class="wrap faq">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Dúvidas</span>
+        <h2>Perguntas frequentes</h2>
+      </div>
+
+      <details>
+        <summary>O Lumi é pago?</summary>
+        <div class="details-body">
+          <p>Não. O Lumi é gratuito e não tem anúncios. É um projeto acadêmico.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Meus dados vão para algum servidor?</summary>
+        <div class="details-body">
+          <p>O Lumi não tem servidor nem contas próprias: quem faz o app não recebe suas notas, seus lembretes nem sua agenda. Tudo fica no seu computador.</p>
+          <p>Os dados só saem de lá se você conectar uma conta Google, se usar a busca com IA, e na verificação de novas versões. Os detalhes estão na <a href="privacidade.html">Política de Privacidade</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Por que o Lumi pede acesso à minha conta Google?</summary>
+        <div class="details-body">
+          <p>Conectar uma conta Google é opcional. Se você conectar, o Lumi usa o acesso para:</p>
+          <ul>
+            <li><strong>Agenda:</strong> mostrar seus eventos, avisar das reuniões, responder a convites e criar eventos.</li>
+            <li><strong>Gmail:</strong> enviar os emails que você pedir. O Lumi não lê sua caixa de entrada.</li>
+            <li><strong>Contatos:</strong> sugerir nomes e emails enquanto você digita.</li>
+            <li><strong>Email da conta:</strong> mostrar qual conta está conectada.</li>
+          </ul>
+          <p>Enquanto o app não passa pela verificação do Google, a tela de login mostra o aviso de app não verificado. Para continuar, clique em <span class="ui">Avançado</span> e depois em <span class="ui">Acessar</span>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Por que o Windows e o Mac mostram um aviso na instalação?</summary>
+        <div class="details-body">
+          <p>Porque o Lumi ainda não tem assinatura digital, um certificado pago que a Microsoft e a Apple usam para reconhecer quem publicou o app. O aviso não quer dizer que o arquivo tem algo de errado. O passo a passo para continuar está em <a href="#instalar">Instalar</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>O que a busca com IA envia?</summary>
+        <div class="details-body">
+          <p>Nada, até você permitir. Ela pede permissão no primeiro uso, e você pode retirar a permissão nas Configurações.</p>
+          <p>Com a permissão, quando você aperta Enter na busca ou termina um ditado, o Lumi envia ao Gemini do Google a sua pergunta e o conteúdo das suas reuniões, notas e lembretes. <strong>Não dê a permissão se suas notas ou reuniões tiverem informações sensíveis ou confidenciais.</strong> <a href="privacidade.html#ia">Leia os detalhes</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Como desinstalar e apagar meus dados?</summary>
+        <div class="details-body">
+          <p>No Windows, desinstale em <span class="ui">Configurações → Aplicativos</span>. No Mac, arraste o Lumi de Aplicativos para o Lixo.</p>
+          <p>Desinstalar não apaga seus dados. Para apagá-los, apague também esta pasta:</p>
+          <ul>
+            <li><strong>Windows:</strong> <code>%APPDATA%\com.belarodis.lumi</code></li>
+            <li><strong>Mac:</strong> <code>~/Library/Application Support/com.belarodis.lumi</code></li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Funciona no Linux ou no celular?</summary>
+        <div class="details-body">
+          <p>Por enquanto, não. O Lumi é feito para computadores com Windows ou Mac.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
 </main>
-<footer>
-  <p>Lumi é um projeto acadêmico. <a href="privacidade.html">Política de Privacidade</a> · <a href="https://github.com/belarodis/Lumi-Releases/issues">Fale conosco</a></p>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__brand">
+      <img src="assets/favicon-64.png" alt="" width="28" height="28">
+      <span>Lumi é um projeto acadêmico.</span>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="privacidade.html">Política de Privacidade</a>
+      <a href="https://github.com/belarodis/Lumi-Releases/releases">Todas as versões</a>
+      <a href="https://github.com/belarodis/Lumi-Releases/issues">Fale conosco</a>
+    </nav>
+  </div>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var REPO = 'belarodis/Lumi-Releases';
+  var LATEST_PAGE = 'https://github.com/' + REPO + '/releases/latest';
+  var API = 'https://api.github.com/repos/' + REPO + '/releases/latest';
+  var CACHE_KEY = 'lumi-release-v1';
+  var CACHE_MS = 10 * 60 * 1000;
+
+  // Os arquivos de cada versão, como o electron-builder os nomeia.
+  var TARGETS = {
+    'win':     { match: /\.exe$/i,           os: 'win', button: 'Baixar para Windows',   detail: 'Windows 10 e 11',     name: 'Windows' },
+    'mac-arm': { match: /mac-arm64\.dmg$/i,  os: 'mac', button: 'Baixar para Mac',       detail: 'chip Apple (M1 ou mais novo)', name: 'Mac com chip Apple' },
+    'mac-x64': { match: /mac-x64\.dmg$/i,    os: 'mac', button: 'Baixar para Mac Intel', detail: 'processador Intel',   name: 'Mac com Intel' }
+  };
+
+  var $ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  // ── Barra do topo ganha uma linha ao rolar ──
+  var topbar = document.querySelector('.topbar');
+  var onScroll = function () { topbar.classList.toggle('is-scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Abas de instalação ──
+  var tabs = $('[role="tab"]');
+  function selectTab(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { selectTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      selectTab(next, true);
+    });
+  });
+
+  // ── Que computador é este ──
+  function baseOS() {
+    var uaData = navigator.userAgentData;
+    var ua = navigator.userAgent || '';
+    var platform = (uaData && uaData.platform) || navigator.platform || '';
+    var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1; // iPad se passando por Mac
+    if ((uaData && uaData.mobile) || /Android|iPhone|iPad|iPod|Mobile/i.test(ua) || touchMac) return 'mobile';
+    if (/Win/i.test(platform) || /Windows/i.test(ua)) return 'win';
+    if (/Mac/i.test(platform) || /Mac OS X|Macintosh/i.test(ua)) return 'mac';
+    if (/Linux|CrOS|X11/i.test(platform + ' ' + ua)) return 'linux';
+    return 'other';
+  }
+
+  // Chip Apple ou Intel. O Chrome e o Edge contam direto; nos outros, o nome da placa de vídeo
+  // costuma entregar. Sem pista, fica o chip Apple, que é o da maioria dos Macs em uso.
+  function macArch() {
+    var fromGpu = function () {
+      try {
+        var gl = document.createElement('canvas').getContext('webgl');
+        if (gl) {
+          var ext = gl.getExtension('WEBGL_debug_renderer_info');
+          var renderer = String(gl.getParameter(ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER) || '');
+          if (/Apple M\d/i.test(renderer)) return 'mac-arm';
+          if (/Intel|AMD|Radeon|NVIDIA|GeForce/i.test(renderer)) return 'mac-x64';
+        }
+      } catch (e) {}
+      return 'mac-arm';
+    };
+    var uaData = navigator.userAgentData;
+    if (uaData && uaData.getHighEntropyValues) {
+      return uaData.getHighEntropyValues(['architecture']).then(function (v) {
+        if (v.architecture === 'arm') return 'mac-arm';
+        if (v.architecture === 'x86') return 'mac-x64';
+        return fromGpu();
+      }, fromGpu);
+    }
+    return Promise.resolve(fromGpu());
+  }
+
+  function detect() {
+    var os = baseOS();
+    if (os === 'win') return Promise.resolve({ os: os, target: 'win' });
+    if (os === 'mac') return macArch().then(function (target) { return { os: os, target: target }; });
+    return Promise.resolve({ os: os, target: null });
+  }
+
+  // ── A versão mais recente, pelo GitHub ──
+  function readCache() {
+    try {
+      var saved = JSON.parse(sessionStorage.getItem(CACHE_KEY) || 'null');
+      if (saved && Date.now() - saved.at < CACHE_MS) return saved.release;
+    } catch (e) {}
+    return null;
+  }
+
+  function writeCache(release) {
+    try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), release: release })); } catch (e) {}
+  }
+
+  function fetchRelease() {
+    var cached = readCache();
+    if (cached) return Promise.resolve(cached);
+    if (!window.fetch) return Promise.resolve(null);
+    return fetch(API, { headers: { Accept: 'application/vnd.github+json' } })
+      .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+      .then(function (data) {
+        var release = {
+          version: String(data.tag_name || '').replace(/^v/, ''),
+          date: data.published_at,
+          files: {}
+        };
+        Object.keys(TARGETS).forEach(function (key) {
+          var asset = (data.assets || []).filter(function (a) { return TARGETS[key].match.test(a.name); })[0];
+          if (asset) release.files[key] = { url: asset.browser_download_url, size: asset.size, name: asset.name };
+        });
+        writeCache(release);
+        return release;
+      })
+      .catch(function () { return null; });
+  }
+
+  function megabytes(bytes) {
+    return Math.round(bytes / 1e6).toLocaleString('pt-BR') + ' MB';
+  }
+
+  function longDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (e) { return ''; }
+  }
+
+  function render(found, release) {
+    var target = found.target;
+    var file = function (key) { return release && release.files[key]; };
+
+    // Versão e data
+    if (release && release.version) {
+      $('[data-version]').forEach(function (el) { el.textContent = release.version; });
+      $('[data-date]').forEach(function (el) { el.textContent = longDate(release.date); });
+      $('[data-release-info]').forEach(function (el) { el.hidden = false; });
+      $('[data-hero-pill]').forEach(function (el) { el.textContent = 'Grátis · Windows e Mac · versão ' + release.version; });
+    }
+
+    // Botões de cada sistema
+    Object.keys(TARGETS).forEach(function (key) {
+      var f = file(key);
+      $('[data-dl="' + key + '"]').forEach(function (a) {
+        a.href = f ? f.url : LATEST_PAGE;
+        if (f) a.setAttribute('download', '');
+      });
+      $('[data-size="' + key + '"]').forEach(function (el) {
+        el.textContent = f ? f.name + ' · ' + megabytes(f.size) : '';
+      });
+      $('[data-platform="' + key + '"]').forEach(function (el) { el.classList.toggle('is-yours', key === target); });
+    });
+
+    $('[data-os]').forEach(function (el) {
+      el.classList.toggle('is-yours', el.getAttribute('data-os') === found.os);
+    });
+
+    // Botões que escolhem sozinhos (início e atualizar)
+    $('[data-dl="auto"]').forEach(function (a) {
+      var label = a.querySelector('[data-dl-label]');
+      var meta = a.querySelector('[data-dl-meta]');
+      var isUpdate = a.getAttribute('data-kind') === 'update';
+      if (!target) {
+        a.href = '#baixar';
+        a.removeAttribute('download');
+        if (found.os === 'mobile') meta.textContent = 'Abra esta página no computador';
+        else if (found.os === 'linux') meta.textContent = 'Por enquanto, só Windows e Mac';
+        if (isUpdate) label.textContent = 'Ver as versões para baixar';
+        return;
+      }
+      var t = TARGETS[target];
+      var f = file(target);
+      a.href = f ? f.url : LATEST_PAGE;
+      if (f) a.setAttribute('download', ''); else a.removeAttribute('download');
+      if (isUpdate) {
+        label.textContent = release && release.version ? 'Baixar a versão ' + release.version : 'Baixar a versão mais recente';
+        meta.textContent = 'para ' + t.name + (f ? ' · ' + megabytes(f.size) : '');
+      } else {
+        label.textContent = t.button;
+        meta.textContent = t.detail + (f ? ' · ' + megabytes(f.size) : '');
+      }
+    });
+
+    // Aba de instalação do sistema de quem está vendo
+    if (found.os === 'mac') selectTab(document.getElementById('tab-mac'));
+  }
+
+  detect().then(function (found) {
+    render(found, null);
+    return fetchRelease().then(function (release) { render(found, release); });
+  });
+})();
+</script>
 </body>
 </html>
