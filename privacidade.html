@@ -36,15 +36,15 @@
     <div class="doc-head">
       <span class="eyebrow">Privacidade</span>
       <h1>Política de Privacidade do Lumi</h1>
-      <p>Última atualização: 6 de novembro de 2026</p>
+      <p>Última atualização: 17 de novembro de 2026</p>
     </div>
 
     <div class="summary glass">
       <h2>Resumo</h2>
       <ul>
-        <li>O Lumi é um projeto acadêmico. Ele não tem servidor nem contas próprias: nós, que fazemos o app, não recebemos suas notas, seus lembretes nem sua agenda.</li>
-        <li>Seus dados ficam no seu computador.</li>
-        <li>Eles só saem de lá em três situações: se você conectar uma conta Google, se usar a busca com IA, e na verificação de novas versões.</li>
+        <li>O Lumi é um projeto acadêmico. Para usá-lo, você entra com uma conta: email e senha ou Google.</li>
+        <li>Suas notas, lembretes, tags e anexos ficam guardados na sua conta, para aparecerem em todos os computadores em que você entrar. Só a sua conta tem acesso a eles.</li>
+        <li>A agenda e o acesso à sua conta Google ficam só no seu computador. Nada da agenda vai para o servidor do Lumi.</li>
         <li><strong>A busca com IA, se você permitir, envia o conteúdo das suas reuniões, notas e lembretes ao Google.</strong> Ela pede sua permissão antes do primeiro envio. Leia a seção "Busca com IA" antes de aceitar.</li>
         <li>O app não tem anúncios nem métricas de uso.</li>
       </ul>
@@ -56,12 +56,39 @@
       <li><strong>Windows:</strong> <code>%APPDATA%\com.belarodis.lumi</code></li>
       <li><strong>Mac:</strong> <code>~/Library/Application Support/com.belarodis.lumi</code></li>
     </ul>
-    <p>Os dados de acesso à sua conta Google ficam nessa mesma pasta, criptografados com a proteção do seu sistema operacional. As notas e os demais dados não são criptografados pelo app. Por isso, proteja o acesso ao seu computador.</p>
+    <p>Os dados de acesso à sua conta do Lumi e à sua agenda do Google ficam nessa mesma pasta, criptografados com a proteção do seu sistema operacional. As notas e os demais dados não são criptografados pelo app. Por isso, proteja o acesso ao seu computador.</p>
+    <p>Na subpasta <code>logs</code>, o Lumi guarda um registro de funcionamento, para entender falhas: erros, telas conectadas e o que acontece com as janelas, como abrir a nota ou arrastar a bolinha. Ele pode conter títulos de reuniões. Senhas e chaves de acesso são ocultadas. O registro não sai do seu computador, a menos que você mesmo envie o arquivo a alguém. Ele ocupa no máximo 4 MB: o mais antigo é apagado.</p>
 
     <p>Se você escolher um estilo de borda que acompanha o fundo da tela, o Lumi lê as cores do papel de parede ou da própria tela, reduzidas a poucos pixels, só para desenhar a borda. No Mac, ler a tela, com as janelas abertas, depende da permissão de Gravação de Tela, que você concede no sistema. Essa leitura não é salva nem enviada a ninguém.</p>
 
-    <h2>Conta Google (opcional)</h2>
-    <p>Se você conectar uma conta, o seu computador se comunica diretamente com o Google, sem passar por nenhum servidor nosso. O Lumi pede estas permissões:</p>
+    <h2 id="conta">Sua conta do Lumi</h2>
+    <p>Para usar o Lumi, você entra com uma conta. Ela pode ser criada com email e senha, ou com a sua conta Google. As contas ficam no Supabase, um serviço de autenticação, em servidores em São Paulo. A Supabase é uma empresa dos Estados Unidos e pode acessar esses dados de fora do Brasil para operar o serviço.</p>
+    <p>O servidor de contas guarda:</p>
+    <ul>
+      <li>o seu email;</li>
+      <li>a sua senha, se você criou uma, guardada de um jeito que nem nós conseguimos ler (hash);</li>
+      <li>se você entrou com Google: o nome, o endereço da foto de perfil e o identificador da conta que o Google informa;</li>
+      <li>a data de criação da conta e a do último acesso;</li>
+      <li>registros de acesso (data, hora e endereço IP), para a segurança das contas.</li>
+    </ul>
+    <p>Esses dados servem para identificar você e manter a sua conta. A base legal é a execução do contrato de uso do app (LGPD, art. 7º, V). Eles ficam guardados enquanto a conta existir.</p>
+
+    <h2 id="sincronizacao">Sincronização entre computadores</h2>
+    <p>Para que as mesmas notas apareçam em todos os computadores em que você entrar, o Lumi guarda na sua conta, no mesmo servidor:</p>
+    <ul>
+      <li>suas notas: título, texto e datas de criação e de abertura;</li>
+      <li>os arquivos e desenhos anexados às notas, até 25 MB cada;</li>
+      <li>seus lembretes: título, prazo, frequência dos avisos, situação, tags e a nota em que foram escritos;</li>
+      <li>suas tags e a posição das notas e dos lembretes nos quadros de tags;</li>
+      <li>nas notas de reunião, só o identificador que o Google dá à reunião. O título, o horário e os convidados não vão para o servidor: cada computador os busca direto na sua agenda.</li>
+    </ul>
+    <p>Só a sua conta acessa esse conteúdo. O servidor guarda os dados criptografados em disco e separa cada conta das outras. Usamos esse conteúdo apenas para sincronizar: não o lemos, analisamos nem compartilhamos. A base legal é a mesma, a execução do contrato de uso do app.</p>
+    <p>Quando você apaga uma nota ou um lembrete, o conteúdo sai do servidor, e fica só o identificador, para que os outros computadores também apaguem. Ao excluir a conta, tudo o que estava guardado nela é apagado. Se outra conta entrar no mesmo computador, suas notas saem dele e continuam guardadas na sua conta.</p>
+    <p>Com <strong>Manter conectado</strong> marcado, o app abre sem pedir login de novo. Desmarcado, ele pede login toda vez que abre.</p>
+
+    <h2>Google</h2>
+    <p>Entrar com Google também conecta a agenda dessa conta. Quem entra com email e senha pode conectar a agenda depois, nas Configurações, ou não conectar. Com a agenda conectada, o seu computador se comunica diretamente com o Google, sem passar por nenhum servidor nosso.</p>
+    <p>Do Google, o Lumi pede estas permissões:</p>
     <div class="table-scroll">
     <table>
       <thead><tr><th>Permissão</th><th>Para que é usada</th></tr></thead>
@@ -88,23 +115,24 @@
     <p class="warn"><strong>Não dê a permissão se suas notas ou reuniões tiverem informações sensíveis ou confidenciais.</strong> Sem a permissão, nada é enviado, e a busca continua funcionando no seu computador.</p>
 
     <h2>Verificação de novas versões</h2>
-    <p>A cada algumas horas, o Lumi consulta o GitHub para saber se há uma nova versão. O GitHub recebe seu endereço IP, como em qualquer acesso a um site. No Windows, a nova versão é baixada automaticamente. Nenhuma nota ou dado da agenda é enviado nessa consulta.</p>
+    <p>A cada 15 minutos, o Lumi consulta o GitHub para saber se há uma nova versão. O GitHub recebe seu endereço IP, como em qualquer acesso a um site. No Windows, a nova versão é baixada automaticamente. Nenhuma nota ou dado da agenda é enviado nessa consulta.</p>
 
     <h2>Com quem os dados são compartilhados</h2>
-    <p>Só com o Google, nas situações acima, e com o GitHub, na verificação de versões. Não vendemos dados. Os dados enviados a essas empresas seguem também as políticas delas: <a href="https://policies.google.com/privacy">Google</a> e <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p>
+    <p>Com a Supabase, que mantém o servidor de contas e de sincronização; com o Google, nas situações acima; e com o GitHub, na verificação de versões. Não vendemos dados. Os dados enviados a essas empresas seguem também as políticas delas: <a href="https://supabase.com/privacy">Supabase</a>, <a href="https://policies.google.com/privacy">Google</a> e <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p>
 
     <h2>Como apagar seus dados</h2>
     <ul>
-      <li><strong>Desconectar o Google:</strong> faça isso nas Configurações do app. Para revogar o acesso, use a página de <a href="https://myaccount.google.com/permissions">permissões da sua conta Google</a>.</li>
+      <li><strong>Excluir a conta do Lumi:</strong> em Configurações → Conta → Excluir conta. A conta e tudo o que estava guardado nela, notas e anexos inclusive, são apagados do servidor e não podem ser recuperados. A cópia no seu computador continua lá. Sair da conta não apaga nada.</li>
+      <li><strong>Desconectar a agenda:</strong> faça isso nas Configurações do app. Para revogar o acesso, use a página de <a href="https://myaccount.google.com/permissions">permissões da sua conta Google</a>.</li>
       <li><strong>Apagar os dados do app:</strong> desinstale o Lumi e apague a pasta indicada acima. Desinstalar não apaga essa pasta sozinho.</li>
       <li><strong>O que já está no Google:</strong> sua agenda e seus emails continuam na sua conta e seguem as regras do Google.</li>
     </ul>
 
     <h2>Seus direitos</h2>
-    <p>A Lei Geral de Proteção de Dados (LGPD) garante direitos como acesso, correção e eliminação de dados. Como não guardamos seus dados, você mesmo pode acessá-los, corrigi-los e apagá-los no app. Para o que foi enviado ao Google, use os canais do próprio Google.</p>
+    <p>A Lei Geral de Proteção de Dados (LGPD) garante direitos como acesso, correção, portabilidade e eliminação de dados. O email da conta aparece em Configurações → Conta, onde você também pode excluí-la. O que fica no seu computador, você mesmo acessa, corrige e apaga no app. Para os demais pedidos sobre a sua conta, use o contato abaixo. Para o que foi enviado ao Google, use os canais do Google.</p>
 
     <h2>Mudanças nesta política</h2>
-    <p>Publicaremos qualquer alteração nesta página, com a nova data no topo. Se mudarmos a forma de usar os dados da sua conta Google, avisaremos no app e pediremos seu consentimento antes.</p>
+    <p>Publicaremos qualquer alteração nesta página, com a nova data no topo. Se mudarmos a forma de usar os dados da sua conta, avisaremos no app antes.</p>
 
     <h2>Contato</h2>
     <p>Fale conosco abrindo uma <a href="https://github.com/belarodis/Lumi-Releases/issues">issue no GitHub</a>. As issues são públicas, então não escreva dados pessoais nelas.</p>
