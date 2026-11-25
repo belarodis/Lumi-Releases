@@ -36,15 +36,16 @@
     <div class="doc-head">
       <span class="eyebrow">Privacidade</span>
       <h1>Política de Privacidade do Lumi</h1>
-      <p>Última atualização: 17 de novembro de 2026</p>
+      <p>Última atualização: 25 de novembro de 2026</p>
     </div>
 
     <div class="summary glass">
       <h2>Resumo</h2>
       <ul>
-        <li>O Lumi é um projeto acadêmico. Para usá-lo, você entra com uma conta: email e senha ou Google.</li>
-        <li>Suas notas, lembretes, tags e anexos ficam guardados na sua conta, para aparecerem em todos os computadores em que você entrar. Só a sua conta tem acesso a eles.</li>
-        <li>A agenda e o acesso à sua conta Google ficam só no seu computador. Nada da agenda vai para o servidor do Lumi.</li>
+        <li>O Lumi é um projeto acadêmico. Para usá-lo, você entra com uma conta: email e senha, Google ou Microsoft.</li>
+        <li>Suas notas, lembretes, tags, anexos, roteiros de reunião e preferências ficam guardados na sua conta, para aparecerem em todos os computadores em que você entrar. Só a sua conta tem acesso a eles.</li>
+        <li>A agenda e o acesso à sua conta Google ou Microsoft ficam só no seu computador. Nada da agenda vai para o servidor do Lumi.</li>
+        <li>Se você gravar uma reunião, o vídeo fica só no seu computador. Avise as pessoas da reunião antes de gravar.</li>
         <li><strong>A busca com IA, se você permitir, envia o conteúdo das suas reuniões, notas e lembretes ao Google.</strong> Ela pede sua permissão antes do primeiro envio. Leia a seção "Busca com IA" antes de aceitar.</li>
         <li>O app não tem anúncios nem métricas de uso.</li>
       </ul>
@@ -61,13 +62,15 @@
 
     <p>Se você escolher um estilo de borda que acompanha o fundo da tela, o Lumi lê as cores do papel de parede ou da própria tela, reduzidas a poucos pixels, só para desenhar a borda. No Mac, ler a tela, com as janelas abertas, depende da permissão de Gravação de Tela, que você concede no sistema. Essa leitura não é salva nem enviada a ninguém.</p>
 
+    <p id="gravacao"><strong>Gravação de reunião.</strong> Durante uma reunião, você pode gravá-la pela bolinha. Do clique em <strong>Gravar</strong> até você parar, o Lumi grava a tela em que a bolinha está, o som do computador (o que você ouve, como as vozes da chamada) e o seu microfone. Enquanto grava, a bolinha fica com um anel vermelho e a borda some, para não aparecer no vídeo. O vídeo fica só no seu computador, na pasta <code>Lumi</code> dentro de <code>Vídeos</code> (no Mac, <code>Filmes</code>), e não é enviado a ninguém, nem para a sua conta. A nota da reunião ganha um link para o vídeo que leva só um código, sem o título nem o horário da reunião; em outro computador, esse link não abre o vídeo. No Mac, gravar depende das permissões de Gravação de Tela, Microfone e Gravação de Áudio do Sistema, que você concede no sistema; no Windows, não há permissão a dar. <strong>Avise as pessoas da reunião antes de gravar:</strong> gravar a voz e a imagem de outras pessoas pode exigir o consentimento delas, e essa responsabilidade é de quem grava.</p>
+
     <h2 id="conta">Sua conta do Lumi</h2>
-    <p>Para usar o Lumi, você entra com uma conta. Ela pode ser criada com email e senha, ou com a sua conta Google. As contas ficam no Supabase, um serviço de autenticação, em servidores em São Paulo. A Supabase é uma empresa dos Estados Unidos e pode acessar esses dados de fora do Brasil para operar o serviço.</p>
+    <p>Para usar o Lumi, você entra com uma conta. Ela pode ser criada com email e senha, ou com a sua conta Google ou Microsoft. As contas ficam no Supabase, um serviço de autenticação, em servidores em São Paulo. A Supabase é uma empresa dos Estados Unidos e pode acessar esses dados de fora do Brasil para operar o serviço.</p>
     <p>O servidor de contas guarda:</p>
     <ul>
       <li>o seu email;</li>
       <li>a sua senha, se você criou uma, guardada de um jeito que nem nós conseguimos ler (hash);</li>
-      <li>se você entrou com Google: o nome, o endereço da foto de perfil e o identificador da conta que o Google informa;</li>
+      <li>se você entrou com Google ou Microsoft: o nome e o identificador da conta que eles informam e, no Google, o endereço da foto de perfil;</li>
       <li>a data de criação da conta e a do último acesso;</li>
       <li>registros de acesso (data, hora e endereço IP), para a segurança das contas.</li>
     </ul>
@@ -80,7 +83,9 @@
       <li>os arquivos e desenhos anexados às notas, até 25 MB cada;</li>
       <li>seus lembretes: título, prazo, frequência dos avisos, situação, tags e a nota em que foram escritos;</li>
       <li>suas tags e a posição das notas e dos lembretes nos quadros de tags;</li>
-      <li>nas notas de reunião, só o identificador que o Google dá à reunião. O título, o horário e os convidados não vão para o servidor: cada computador os busca direto na sua agenda.</li>
+      <li>o roteiro das reuniões: o texto, o tipo e a ordem de cada post-it e se ele já foi feito. O lugar de cada post-it na tela fica só em cada computador;</li>
+      <li>suas preferências das Configurações: tema, cores e estilo da borda, minutos de aviso antes da reunião, desenho da bolinha e por quanto tempo os lembretes feitos ficam. Abrir o Lumi ao ligar o computador, a agenda conectada e a permissão da busca com IA ficam só em cada computador;</li>
+      <li>nas notas e nos roteiros de reunião, só o identificador que o Google ou a Microsoft dá à reunião. O título, o horário e os convidados não vão para o servidor: cada computador os busca direto na sua agenda.</li>
     </ul>
     <p>Só a sua conta acessa esse conteúdo. O servidor guarda os dados criptografados em disco e separa cada conta das outras. Usamos esse conteúdo apenas para sincronizar: não o lemos, analisamos nem compartilhamos. A base legal é a mesma, a execução do contrato de uso do app.</p>
     <p>Quando você apaga uma nota ou um lembrete, o conteúdo sai do servidor, e fica só o identificador, para que os outros computadores também apaguem. Ao excluir a conta, tudo o que estava guardado nela é apagado. Se outra conta entrar no mesmo computador, suas notas saem dele e continuam guardadas na sua conta.</p>
@@ -97,6 +102,19 @@
         <tr><td>Gmail (enviar)</td><td>Enviar os emails que você pedir. O Lumi não lê sua caixa de entrada.</td></tr>
         <tr><td>Contatos (ler contatos e outros contatos)</td><td>Sugerir nomes e emails enquanto você digita. Eles ficam na memória enquanto o app está aberto e não são gravados em disco.</td></tr>
         <tr><td>Email da conta</td><td>Mostrar qual conta está conectada.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 id="microsoft">Microsoft (Outlook)</h2>
+    <p>Entrar com Microsoft também conecta a agenda do Outlook dessa conta. Quem entra de outro jeito pode conectá-la depois, nas Configurações, ou não conectar. Como no Google, o seu computador se comunica diretamente com a Microsoft, sem passar por nenhum servidor nosso.</p>
+    <p>Da Microsoft, o Lumi pede estas permissões:</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Permissão</th><th>Para que é usada</th></tr></thead>
+      <tbody>
+        <tr><td>Agenda (ler e editar eventos)</td><td>Mostrar eventos e convites, avisar das reuniões, responder a convites e criar eventos quando você pedir. Uma cópia dos eventos, com título, horário, descrição, local e participantes, fica no seu computador.</td></tr>
+        <tr><td>Perfil básico (entrar e ler o perfil)</td><td>Mostrar qual conta está conectada.</td></tr>
       </tbody>
     </table>
     </div>
@@ -118,18 +136,18 @@
     <p>A cada 15 minutos, o Lumi consulta o GitHub para saber se há uma nova versão. O GitHub recebe seu endereço IP, como em qualquer acesso a um site. Quando há uma, ela é baixada automaticamente (no Mac, se o Lumi estiver na pasta Aplicativos). Nenhuma nota ou dado da agenda é enviado nessa consulta.</p>
 
     <h2>Com quem os dados são compartilhados</h2>
-    <p>Com a Supabase, que mantém o servidor de contas e de sincronização; com o Google, nas situações acima; e com o GitHub, na verificação de versões. Não vendemos dados. Os dados enviados a essas empresas seguem também as políticas delas: <a href="https://supabase.com/privacy">Supabase</a>, <a href="https://policies.google.com/privacy">Google</a> e <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p>
+    <p>Com a Supabase, que mantém o servidor de contas e de sincronização; com o Google e a Microsoft, nas situações acima; e com o GitHub, na verificação de versões. Não vendemos dados. Os dados enviados a essas empresas seguem também as políticas delas: <a href="https://supabase.com/privacy">Supabase</a>, <a href="https://policies.google.com/privacy">Google</a>, <a href="https://privacy.microsoft.com/pt-br/privacystatement">Microsoft</a> e <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p>
 
     <h2>Como apagar seus dados</h2>
     <ul>
       <li><strong>Excluir a conta do Lumi:</strong> em Configurações → Conta → Excluir conta. A conta e tudo o que estava guardado nela, notas e anexos inclusive, são apagados do servidor e não podem ser recuperados. A cópia no seu computador continua lá. Sair da conta não apaga nada.</li>
-      <li><strong>Desconectar a agenda:</strong> faça isso nas Configurações do app. Para revogar o acesso, use a página de <a href="https://myaccount.google.com/permissions">permissões da sua conta Google</a>.</li>
-      <li><strong>Apagar os dados do app:</strong> desinstale o Lumi e apague a pasta indicada acima. Desinstalar não apaga essa pasta sozinho.</li>
-      <li><strong>O que já está no Google:</strong> sua agenda e seus emails continuam na sua conta e seguem as regras do Google.</li>
+      <li><strong>Desconectar a agenda:</strong> faça isso nas Configurações do app. Para revogar o acesso, use a página de <a href="https://myaccount.google.com/permissions">permissões da sua conta Google</a> ou a de <a href="https://account.live.com/consent/Manage">aplicativos da sua conta Microsoft</a>.</li>
+      <li><strong>Apagar os dados do app:</strong> desinstale o Lumi e apague a pasta indicada acima e, se gravou reuniões, a pasta <code>Lumi</code> dentro de <code>Vídeos</code> (no Mac, <code>Filmes</code>). Desinstalar não apaga essas pastas sozinho.</li>
+      <li><strong>O que já está no Google ou na Microsoft:</strong> sua agenda e seus emails continuam na sua conta e seguem as regras de cada empresa.</li>
     </ul>
 
     <h2>Seus direitos</h2>
-    <p>A Lei Geral de Proteção de Dados (LGPD) garante direitos como acesso, correção, portabilidade e eliminação de dados. O email da conta aparece em Configurações → Conta, onde você também pode excluí-la. O que fica no seu computador, você mesmo acessa, corrige e apaga no app. Para os demais pedidos sobre a sua conta, use o contato abaixo. Para o que foi enviado ao Google, use os canais do Google.</p>
+    <p>A Lei Geral de Proteção de Dados (LGPD) garante direitos como acesso, correção, portabilidade e eliminação de dados. O email da conta aparece em Configurações → Conta, onde você também pode excluí-la. O que fica no seu computador, você mesmo acessa, corrige e apaga no app. Para os demais pedidos sobre a sua conta, use o contato abaixo. Para o que foi enviado ao Google ou à Microsoft, use os canais de cada empresa.</p>
 
     <h2>Mudanças nesta política</h2>
     <p>Publicaremos qualquer alteração nesta página, com a nova data no topo. Se mudarmos a forma de usar os dados da sua conta, avisaremos no app antes.</p>
