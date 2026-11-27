@@ -2,8 +2,8 @@
 // internet. The notes themselves are kept by the page (IndexedDB) and the account server is never
 // cached here. mobile/vite.config.ts fills in the version and the list of files at build time.
 
-const VERSION = '3100bcc330ff'
-const FILES = ["./","assets/index-DS2Uz5FF.js","assets/index-DkTklyDq.css","assets/lumi-mark-Dc0YjRQ3.png","fonts/OFL.txt","fonts/outfit-latin.woff2","icons/apple-touch-icon.png","icons/bubble.png","icons/favicon-32.png","icons/icon-192.png","icons/icon-512.png","icons/icon-maskable-512.png","manifest.webmanifest"]
+const VERSION = '3098282a0fc9'
+const FILES = ["./","assets/index-D-b3Btwm.js","assets/index-DkTklyDq.css","assets/lumi-mark-Dc0YjRQ3.png","fonts/OFL.txt","fonts/outfit-latin.woff2","icons/apple-touch-icon.png","icons/bubble.png","icons/favicon-32.png","icons/icon-192.png","icons/icon-512.png","icons/icon-maskable-512.png","manifest.webmanifest"]
 const CACHE = `lumi-app-${VERSION}`
 
 self.addEventListener('install', (event) => {
